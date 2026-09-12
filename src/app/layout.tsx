@@ -77,7 +77,7 @@ export default function RootLayout({
         "@id": `${siteConfig.url}/#organization`,
         name: "EVORA",
         url: siteConfig.url,
-        logo: `${siteConfig.url}/logo/evora-logo-dark.svg`,
+        logo: `${siteConfig.url}/logo/evora-logo.png`,
         description: siteConfig.description,
         sameAs: [siteConfig.instagramUrl],
         contactPoint: [
