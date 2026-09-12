@@ -32,6 +32,16 @@ export interface LookItem {
   name: string;
 }
 
+export interface LookHotspot {
+  id: string;
+  x: number; // percentage 0-100
+  y: number; // percentage 0-100
+  productId: string;
+  pieceName: string;
+  role: string;
+  price?: string;
+}
+
 export interface LookbookEntry {
   id: string;
   slug: string;
@@ -43,6 +53,7 @@ export interface LookbookEntry {
   heroImage: string;
   supportingImages: string[];
   styledItems: LookItem[];
+  hotspots?: LookHotspot[];
 }
 
 export interface BrandService {

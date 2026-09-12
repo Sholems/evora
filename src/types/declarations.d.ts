@@ -21,6 +21,7 @@ declare module "lucide-react" {
   export const Mail: LucideIcon;
   export const MapPin: LucideIcon;
   export const Clock: LucideIcon;
+  export const Calendar: LucideIcon;
   export const ChevronDown: LucideIcon;
   export const ChevronLeft: LucideIcon;
   export const ChevronRight: LucideIcon;

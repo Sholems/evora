@@ -4,6 +4,7 @@ import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/common/Navbar";
 import { Footer } from "@/components/common/Footer";
 import { WhatsAppButton } from "@/components/common/WhatsAppButton";
+import { ConciergeDrawer } from "@/components/common/ConciergeDrawer";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -129,6 +130,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton variant="floating" />
+        <ConciergeDrawer />
       </body>
     </html>
   );

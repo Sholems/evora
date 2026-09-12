@@ -66,6 +66,26 @@ const config: Config = {
         luxury: "0 10px 40px -15px rgba(142, 95, 82, 0.08)",
         "luxury-lg": "0 20px 50px -15px rgba(43, 33, 29, 0.12)",
         feminine: "0 10px 30px -10px rgba(208, 160, 147, 0.25)",
+        hotspot: "0 0 20px 2px rgba(208, 160, 147, 0.6)",
+      },
+      animation: {
+        marquee: "marquee 32s linear infinite",
+        "marquee-reverse": "marquee-reverse 32s linear infinite",
+        "pulse-subtle": "pulse-subtle 2.5s ease-in-out infinite",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-reverse": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0%)" },
+        },
+        "pulse-subtle": {
+          "0%, 100%": { opacity: "1", transform: "scale(1)" },
+          "50%": { opacity: "0.8", transform: "scale(1.08)" },
+        },
       },
     },
   },

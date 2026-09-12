@@ -1,5 +1,6 @@
 import React from "react";
 import { Hero } from "@/components/home/Hero";
+import { RunwayMarquee } from "@/components/home/RunwayMarquee";
 import { FeaturedCollections } from "@/components/home/FeaturedCollections";
 import { NewArrivals } from "@/components/home/NewArrivals";
 import { BrandStatement } from "@/components/home/BrandStatement";
@@ -12,6 +13,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <RunwayMarquee />
       <FeaturedCollections />
       <NewArrivals />
       <BrandStatement />
