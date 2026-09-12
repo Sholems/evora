@@ -25,7 +25,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
       {kicker && (
         <span
           className={`inline-block text-xs uppercase font-medium tracking-luxury mb-3.5 ${
-            isLight ? "text-bronze-light" : "text-espresso-muted"
+            isLight ? "text-bronze-light" : "text-bronze-rose"
           }`}
         >
           {kicker}
@@ -48,9 +48,9 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         </p>
       )}
       <div
-        className={`mt-6 h-[1px] w-12 ${
+        className={`mt-6 h-[1px] w-14 ${
           align === "center" ? "mx-auto" : ""
-        } ${isLight ? "bg-bronze-light/40" : "bg-bronze/50"}`}
+        } ${isLight ? "bg-bronze-light/40" : "bg-gradient-to-r from-bronze-rose/70 to-bronze/50"}`}
       />
     </div>
   );

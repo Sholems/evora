@@ -10,10 +10,25 @@ const config: Config = {
     extend: {
       colors: {
         cream: {
-          DEFAULT: "#F1E9DC",
-          light: "#FAF7F2",
-          muted: "#E8DFD0",
-          dark: "#DED3C1",
+          DEFAULT: "#F3ECE3",
+          light: "#FAF6F0",
+          soft: "#FCF9F5",
+          muted: "#EADFD3",
+          dark: "#DED0BF",
+        },
+        blush: {
+          50: "#FDFBF9",
+          100: "#F8F2EE",
+          200: "#F2E4DC",
+          300: "#E6CEC2",
+          DEFAULT: "#F4EAE4",
+          rose: "#D0A093",
+          deep: "#8E5F52",
+        },
+        champagne: {
+          light: "#FDF9F2",
+          DEFAULT: "#F2E7D5",
+          dark: "#DCC5A3",
         },
         espresso: {
           DEFAULT: "#2B211D",
@@ -29,6 +44,7 @@ const config: Config = {
         bronze: {
           DEFAULT: "#B89C72",
           light: "#D5C2A5",
+          rose: "#CCA592",
           dark: "#8C714C",
         },
       },
@@ -47,8 +63,9 @@ const config: Config = {
         loose: "2",
       },
       boxShadow: {
-        luxury: "0 10px 40px -15px rgba(43, 33, 29, 0.08)",
-        "luxury-lg": "0 20px 50px -15px rgba(43, 33, 29, 0.15)",
+        luxury: "0 10px 40px -15px rgba(142, 95, 82, 0.08)",
+        "luxury-lg": "0 20px 50px -15px rgba(43, 33, 29, 0.12)",
+        feminine: "0 10px 30px -10px rgba(208, 160, 147, 0.25)",
       },
     },
   },

@@ -7,11 +7,12 @@
 :root {
   --font-serif: 'Cormorant Garamond', Didot, 'Bodoni MT', Georgia, serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --color-cream: #F1E9DC;
-  --color-cream-light: #FAF7F2;
+  --color-cream: #F3ECE3;
+  --color-cream-light: #FAF6F0;
   --color-espresso: #2B211D;
   --color-black: #111111;
   --color-bronze: #B89C72;
+  --color-bronze-rose: #D0A093;
 }
 
 /* Base resets and luxury styling */
@@ -24,17 +25,15 @@ html {
 }
 
 body {
-  background-color: #F1E9DC;
+  background-color: #F3ECE3;
   color: #2B211D;
   font-family: var(--font-sans);
   overflow-x: hidden;
-  selection-background-color: #2B211D;
-  selection-color: #F1E9DC;
 }
 
 ::selection {
-  background-color: #2B211D;
-  color: #F1E9DC;
+  background-color: #E8D5CE;
+  color: #2B211D;
 }
 
 /* Custom fine scrollbar */
@@ -44,11 +43,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F1E9DC;
+  background: #F3ECE3;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4BE9B;
+  background: #D9C3B6;
   border-radius: 3px;
 }
 
@@ -68,7 +67,11 @@ h1, h2, h3, h4, .font-serif {
 }
 
 .border-luxury-light {
-  border-color: rgba(241, 233, 220, 0.15);
+  border-color: rgba(243, 236, 227, 0.18);
+}
+
+.border-rose-subtle {
+  border-color: rgba(208, 160, 147, 0.3);
 }
 
 /* Subtle image zoom transition */
@@ -90,7 +93,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #B89C72;
+  outline: 2px solid #D0A093;
   outline-offset: 2px;
 }
 
