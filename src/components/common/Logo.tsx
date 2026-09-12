@@ -1,0 +1,103 @@
+import React from "react";
+import Link from "next/link";
+
+interface LogoProps {
+  variant?: "dark" | "light";
+  className?: string;
+  size?: "sm" | "md" | "lg" | "xl";
+  asLink?: boolean;
+}
+
+export const Logo: React.FC<LogoProps> = ({
+  variant = "dark",
+  className = "",
+  size = "md",
+  asLink = true,
+}) => {
+  const sizeClasses = {
+    sm: "w-36 h-auto",
+    md: "w-48 sm:w-56 h-auto",
+    lg: "w-56 sm:w-72 h-auto",
+    xl: "w-72 sm:w-96 h-auto",
+  };
+
+  const isDark = variant === "dark";
+  const primaryColor = isDark ? "#2B211D" : "#F1E9DC";
+  const accentColor = isDark ? "#B89C72" : "#D5C2A5";
+  const textColor = isDark ? "#2B211D" : "#FAF7F2";
+
+  const content = (
+    <div className={`inline-flex flex-col items-center justify-center select-none ${sizeClasses[size]} ${className}`}>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 420 110"
+        className="w-full h-auto overflow-visible"
+        fill="none"
+        aria-label="EVORA - Luxury Women's Fashion & Jewelry"
+      >
+        <g id="evora-script">
+          {/* Initial Expressive E */}
+          <path
+            d="M 38 72 C 32 68 28 58 32 45 C 36 32 48 20 62 14 C 74 9 86 12 88 22 C 89 31 82 39 71 43 C 58 47 48 46 42 49 C 39 51 40 56 46 58 C 55 61 74 61 88 56 C 89 59 88 62 86 64 C 72 69 52 70 42 70 C 37 70 33 73 34 76 C 35 79 40 80 48 79 C 68 76 102 68 122 55 C 125 53 127 54 126 57 C 121 68 95 81 66 85 C 48 88 36 84 38 72 Z"
+            fill={primaryColor}
+          />
+          {/* Script v */}
+          <path
+            d="M 128 62 C 125 58 126 51 133 46 C 137 43 142 44 141 48 C 139 56 142 66 149 66 C 154 66 160 59 164 48 C 166 43 171 44 171 47 C 168 59 159 72 147 72 C 138 72 132 68 128 62 Z"
+            fill={primaryColor}
+          />
+          {/* Script o */}
+          <path
+            d="M 183 58 C 183 50 188 44 196 44 C 204 44 209 51 209 59 C 209 68 203 74 195 74 C 187 74 183 67 183 58 Z M 190 59 C 190 64 192 68 196 68 C 200 68 202 64 202 59 C 202 54 200 50 196 50 C 192 50 190 54 190 59 Z"
+            fill={primaryColor}
+          />
+          {/* Script r */}
+          <path
+            d="M 221 54 C 223 48 227 45 233 46 C 238 47 240 50 238 54 C 235 59 233 66 232 72 C 228 73 226 71 226 66 C 227 61 227 56 225 55 C 222 54 219 57 217 61 L 213 72 L 208 72 L 216 46 C 220 46 222 48 221 54 Z"
+            fill={primaryColor}
+          />
+          {/* Script a & graceful swash flourish */}
+          <path
+            d="M 252 59 C 252 50 258 44 266 44 C 272 44 276 48 277 53 L 278 46 L 284 46 L 276 72 C 274 77 277 78 282 76 C 295 71 315 63 336 52 C 338 51 340 53 338 55 C 314 69 288 80 274 82 C 265 83 261 79 263 72 C 260 75 256 77 251 77 C 245 77 241 72 241 65 C 241 57 246 51 252 59 Z M 256 65 C 256 69 259 72 263 72 C 268 72 272 68 273 62 C 273 57 270 52 265 52 C 260 52 256 56 256 65 Z"
+            fill={primaryColor}
+          />
+          {/* Refined Horizontal Flourish Line */}
+          <path
+            d="M 46 88 C 120 84 260 84 374 88 C 378 88 378 87 374 87 C 260 83 120 83 46 87 C 42 87 42 88 46 88 Z"
+            fill={accentColor}
+          />
+          {/* Minimal Diamond Sparkle Accent */}
+          <g transform="translate(365, 30)">
+            <path
+              d="M 0 -7 C 1 -2 2 -1 7 0 C 2 1 1 2 0 7 C -1 2 -2 1 -7 0 C -2 -1 -1 -2 0 -7 Z"
+              fill={accentColor}
+            />
+          </g>
+        </g>
+        {/* Supporting Text */}
+        <text
+          x="210"
+          y="103"
+          textAnchor="middle"
+          fontFamily="'Plus Jakarta Sans', 'Inter', system-ui, sans-serif"
+          fontSize="7.5"
+          fontWeight="500"
+          letterSpacing="0.28em"
+          fill={textColor}
+        >
+          LUXURY WOMEN&apos;S FASHION &amp; JEWELRY
+        </text>
+      </svg>
+    </div>
+  );
+
+  if (!asLink) {
+    return content;
+  }
+
+  return (
+    <Link href="/" className="inline-block transition-opacity duration-300 hover:opacity-85 focus:outline-none">
+      {content}
+    </Link>
+  );
+};
