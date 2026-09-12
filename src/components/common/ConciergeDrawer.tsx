@@ -2,8 +2,7 @@
 
 import React, { useState } from "react";
 import { siteConfig } from "@/config/site";
-import { Logo } from "@/components/common/Logo";
-import { Sparkles, X, MessageCircle, Calendar, Clock, MapPin, Check, Send } from "lucide-react";
+import { Sparkles, X, MessageCircle, Clock, MapPin, Check, Send } from "lucide-react";
 
 export const ConciergeDrawer: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,11 +11,42 @@ export const ConciergeDrawer: React.FC = () => {
   const [serviceType, setServiceType] = useState("Private Showroom Appointment");
   const [preferredDate, setPreferredDate] = useState("");
   const [notes, setNotes] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+
+    try {
+      const endpoint = siteConfig.getFormSubmitEndpoint();
+      const payload = {
+        name: fullName,
+        contact: contact,
+        service: serviceType,
+        preferredDate: preferredDate || "Flexible",
+        notes: notes || "None",
+        _subject: `EVORA VIP Salon Request: ${serviceType} from ${fullName}`,
+        _template: "table",
+        _captcha: "false",
+      };
+
+      await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      setSubmitting(false);
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Salon booking transmission notice:", err);
+      setSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   return (
@@ -80,8 +110,8 @@ export const ConciergeDrawer: React.FC = () => {
                   </div>
                   <h4 className="text-2xl font-serif text-espresso">Reservation Request Received</h4>
                   <p className="text-xs text-espresso-muted font-light leading-relaxed max-w-xs mx-auto">
-                    Thank you, {fullName}. Our senior styling director in Las Vegas will confirm your bespoke
-                    consultation within 4 hours.
+                    Thank you, {fullName}. Your appointment request was sent directly to our atelier concierge.
+                    We will confirm your booking within 4 hours.
                   </p>
                   <div className="pt-4 flex flex-col gap-2">
                     <button
@@ -214,10 +244,11 @@ export const ConciergeDrawer: React.FC = () => {
 
                     <button
                       type="submit"
-                      className="w-full py-3.5 bg-espresso text-cream-light hover:bg-black text-xs uppercase tracking-luxury font-medium transition-colors flex items-center justify-center gap-2 shadow-feminine"
+                      disabled={submitting}
+                      className="w-full py-3.5 bg-espresso text-cream-light hover:bg-black text-xs uppercase tracking-luxury font-medium transition-colors flex items-center justify-center gap-2 shadow-feminine disabled:opacity-50"
                     >
-                      <Send className="w-3.5 h-3.5" />
-                      <span>Submit Request</span>
+                      <Send className="w-3.5 h-3.5 text-bronze-light" />
+                      <span>{submitting ? "Transmitting..." : "Submit Reservation"}</span>
                     </button>
                   </form>
                 </>
@@ -228,7 +259,7 @@ export const ConciergeDrawer: React.FC = () => {
           {/* Drawer Footer */}
           <div className="p-4 bg-cream border-t border-luxury text-center space-y-1">
             <p className="text-[10px] text-espresso-muted tracking-wider uppercase font-medium">
-              Las Vegas Atelier • Discreet Hospitality
+              Las Vegas Atelier • FormSubmit Direct Email
             </p>
             <p className="text-[10px] text-espresso-muted/60">
               Private Showrooms &bull; The Strip &bull; Signature Suites

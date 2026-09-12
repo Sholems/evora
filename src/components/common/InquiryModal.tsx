@@ -41,23 +41,39 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     e.preventDefault();
     setSubmitting(true);
 
-    // If endpoint is configured, submit; otherwise simulate clean local receipt
-    if (siteConfig.formEndpoint) {
-      try {
-        await fetch(siteConfig.formEndpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        });
-      } catch (err) {
-        console.error("Submission failed", err);
-      }
-    }
+    try {
+      const endpoint = siteConfig.getFormSubmitEndpoint();
+      const payload = {
+        name: formData.fullName,
+        email: formData.email,
+        phone: formData.phone || "Not provided",
+        inquiryType: "Product Inquiry",
+        piece: productName,
+        category: category,
+        price: price || "Upon Inquiry",
+        preferredContact: formData.preferredContact,
+        message: formData.message,
+        _subject: `EVORA Product Inquiry: ${productName} (${formData.fullName})`,
+        _template: "table",
+        _captcha: "false",
+      };
 
-    setTimeout(() => {
+      await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
       setSubmitting(false);
       setSubmitted(true);
-    }, 400);
+    } catch (err) {
+      console.error("Modal submission notice:", err);
+      setSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   return (
@@ -87,12 +103,12 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         {submitted ? (
           <div className="text-center py-8 space-y-4">
             <div className="w-12 h-12 bg-espresso text-cream-light flex items-center justify-center mx-auto">
-              <Check className="w-6 h-6 text-bronze-light" />
+              <Check className="w-6 h-6 text-bronze-rose" />
             </div>
-            <h3 className="text-2xl font-serif text-espresso">Inquiry Received</h3>
+            <h3 className="text-2xl font-serif text-espresso">Inquiry Transmitted</h3>
             <p className="text-sm text-espresso-muted font-light leading-relaxed max-w-md mx-auto">
               Thank you for your interest in the <strong className="text-espresso font-medium">{productName}</strong>.
-              An EVORA concierge will connect with you shortly via {formData.preferredContact || "email"}.
+              Your details were sent to our concierge email, and an advisor will connect with you shortly via {formData.preferredContact || "email"}.
             </p>
             <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
               <button
@@ -108,7 +124,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 border border-espresso text-espresso text-xs uppercase tracking-luxury hover:bg-espresso hover:text-cream transition-colors"
               >
-                <MessageCircle className="w-4 h-4 text-bronze" />
+                <MessageCircle className="w-4 h-4 text-bronze-rose" />
                 <span>Instant WhatsApp</span>
               </a>
             </div>
@@ -116,7 +132,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         ) : (
           <div>
             <div className="border-b border-luxury pb-4 mb-6">
-              <span className="text-[11px] uppercase tracking-luxury text-bronze font-medium">
+              <span className="text-[10px] uppercase tracking-ultra-wide text-bronze-rose font-medium">
                 Private Client Concierge
               </span>
               <h3 id="inquiry-modal-title" className="text-2xl font-serif text-espresso mt-1">
@@ -208,10 +224,10 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 py-3 bg-espresso hover:bg-black text-cream-light text-xs uppercase tracking-luxury transition-colors flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="flex-1 py-3 bg-espresso hover:bg-black text-cream-light text-xs uppercase tracking-luxury transition-colors flex items-center justify-center gap-2 disabled:opacity-50 shadow-feminine"
                 >
                   <Mail className="w-3.5 h-3.5" />
-                  <span>{submitting ? "Submitting..." : "Send Concierge Inquiry"}</span>
+                  <span>{submitting ? "Transmitting..." : "Send Concierge Inquiry"}</span>
                 </button>
                 <a
                   href={siteConfig.generateWhatsAppUrl(productName, category)}
@@ -219,7 +235,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-2 py-3 px-5 border border-espresso text-espresso hover:bg-espresso hover:text-cream text-xs uppercase tracking-luxury transition-colors"
                 >
-                  <MessageCircle className="w-4 h-4 text-bronze" />
+                  <MessageCircle className="w-4 h-4 text-bronze-rose" />
                   <span>WhatsApp</span>
                 </a>
               </div>

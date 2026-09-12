@@ -12,7 +12,20 @@ export const siteConfig = {
   whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "17025550199",
   email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "concierge@evorawomen.com",
   instagramUrl: process.env.NEXT_PUBLIC_INSTAGRAM_URL || "https://instagram.com/evorawomen",
-  formEndpoint: process.env.NEXT_PUBLIC_FORM_ENDPOINT || "",
+  
+  // FormSubmit static email integration for Cloudflare Pages
+  formSubmitEmail:
+    process.env.NEXT_PUBLIC_FORMSUBMIT_EMAIL ||
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL ||
+    "concierge@evorawomen.com",
+
+  getFormSubmitEndpoint: () => {
+    const targetEmail =
+      process.env.NEXT_PUBLIC_FORMSUBMIT_EMAIL ||
+      process.env.NEXT_PUBLIC_CONTACT_EMAIL ||
+      "concierge@evorawomen.com";
+    return `https://formsubmit.co/ajax/${targetEmail}`;
+  },
 
   navLinks: [
     { label: "Home", href: "/" },

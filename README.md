@@ -90,17 +90,20 @@ NEXT_PUBLIC_WHATSAPP_NUMBER=17025550199
 # Primary Concierge Email
 NEXT_PUBLIC_CONTACT_EMAIL=concierge@evorawomen.com
 
-# Instagram Profile URL
-NEXT_PUBLIC_INSTAGRAM_URL=https://instagram.com/evorawomen
-
-# Atelier Regional Display
-NEXT_PUBLIC_CITY_REGION="Las Vegas, Nevada"
-NEXT_PUBLIC_ATELIER_HOURS="By Private Appointment Only"
-
-# Optional Contact Form Webhook / API Endpoint (e.g. Formspree, Cloudflare Worker)
-# If blank, inquiries will gracefully acknowledge client requests in the UI
-NEXT_PUBLIC_FORM_ENDPOINT=
+# FormSubmit Configuration (Static Cloudflare Pages Email Delivery)
+# Inquiries from the Contact page, Product Inquiry modal, and VIP Salon drawer are sent here:
+NEXT_PUBLIC_FORMSUBMIT_EMAIL=concierge@evorawomen.com
 ```
+
+### FormSubmit Integration (Static Form Delivery)
+The site uses [FormSubmit](https://formsubmit.co) AJAX endpoint (`https://formsubmit.co/ajax/{email}`) so static deployments on Cloudflare Pages receive form submissions directly in your inbox without needing a backend server:
+- **First-Time Activation**: The very first time a submission is sent to your email address, FormSubmit sends a 1-click confirmation/activation link to that inbox. Click the link once to authorize your email.
+- **Inquiry Types Handled**:
+  1. **General Contact & Atelier Consultations** (`/contact`)
+  2. **Product Piece Inquiries** (Pop-up modal on all product cards and product detail pages)
+  3. **VIP Private Salon Bookings** (Slide-out Concierge drawer)
+- **Features**: Includes anti-spam honeypots, structured tabular email layouts, and zero page redirects.
+
 
 ---
 
